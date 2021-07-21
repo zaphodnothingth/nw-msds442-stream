@@ -1,0 +1,23 @@
+﻿Zip,City,State,Latitude,Longitude,Facility_ID
+60651,Chicago,IL,41.901485,-87.74055,Warehouse_1
+60625,Chicago,IL,41.971614,-87.70256,Warehouse_2
+60602,Chicago,IL,41.882937,-87.62874,Warehouse_3
+10072,New York,NY,40.780751,-73.977182,Warehouse_4
+10177,New York,NY,40.755345,-73.97609,Warehouse_5
+10172,New York,NY,40.755494,-73.97447,Warehouse_6
+10103,New York,NY,40.760915,-73.97785,Warehouse_7
+10087,New York,NY,40.780751,-73.977182,Warehouse_8
+10258,New York,NY,40.780751,-73.977182,Warehouse_9
+02113,Boston,MA,42.365028,-71.05636,Warehouse_10
+02222,Boston,MA,42.367797,-71.06282,Warehouse_11
+90038,Los Angeles,CA,34.089459,-118.3285,Warehouse_12
+90032,Los Angeles,CA,34.08166,-118.17568,Warehouse_13
+90024,Los Angeles,CA,34.063209,-118.43643,Warehouse_14
+33233,Miami,FL,25.558428,-80.458168,Warehouse_15
+33187,Miami,FL,25.596234,-80.4765,Warehouse_16
+33107,Miami,FL,25.558428,-80.458168,Warehouse_17
+75294,Dallas,TX,32.767268,-96.777626,Warehouse_18
+75379,Dallas,TX,32.767268,-96.777626,Warehouse_19
+75219,Dallas,TX,32.812462,-96.81412,Warehouse_20
+75354,Dallas,TX,32.767268,-96.777626,Warehouse_21
+75244,Dallas,TX,32.922624,-96.83616,Warehouse_22
