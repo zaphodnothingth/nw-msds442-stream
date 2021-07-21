@@ -1,0 +1,47 @@
+//-----------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------dairyPagerank------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------
+
+//-------------------------------------------Generate tablesPageRank-------------------------------------------------
+CALL gds.pageRank.write({
+nodeQuery: 'MATCH (c:Customer)-[:WROTE_REVIEW]->()-[:REVIEWS]->(p), (p)-[:IN_CATEGORY]->(:Category {category: $category}) WITH c, count(*) AS reviews WHERE reviews >= $cutoff RETURN id(c) AS id',
+relationshipQuery: 'MATCH (c1:Customer)-[:WROTE_REVIEW]->()-[:REVIEWS]->(p), (p)-[:IN_CATEGORY]->(:Category {category: $category}) MATCH (c1)-[:FRIEND_WITH]->(c2) RETURN id(c1) as source, id(c2) AS target',
+writeProperty: "tablesPageRank",
+validateRelationships: false,
+parameters: {category: "Tables", cutoff: 1}
+})
+YIELD nodePropertiesWritten, createMillis, computeMillis, writeMillis, ranIterations
+RETURN nodePropertiesWritten, createMillis, computeMillis, writeMillis, ranIterations
+//-----------------------------------------------------------------------------------------------------------------------------
+
+// Compute percentiles
+MATCH (c:Customer)
+WHERE exists(c.tablesPageRank)
+return avg(c.tablesPageRank) as ave,
+apoc.math.round(percentileDisc(c.tablesPageRank, 0.5), 2) AS `50%`,
+apoc.math.round(percentileDisc(c.tablesPageRank, 0.75), 2) AS `75%`,
+apoc.math.round(percentileDisc(c.tablesPageRank, 0.90), 2) AS `90%`,
+apoc.math.round(percentileDisc(c.tablesPageRank, 0.95), 2) AS `95%`,
+apoc.math.round(percentileDisc(c.tablesPageRank, 0.99), 2) AS `99%`,
+apoc.math.round(percentileDisc(c.tablesPageRank, 1.0), 2) AS `100%`
+
+//------------------ Check and display for page rank greater than 0.74--------------------------------------
+MATCH (c:Customer)
+WHERE exists(c.tablesPageRank)
+MATCH (c:Customer)
+WHERE c.tablesPageRank > 0.16
+WITH c ORDER BY c.tablesPageRank DESC
+
+RETURN c.customerID AS customerID, c.lastName AS lastName,
+       c.tablesPageRank AS pageRank,
+       size((c)-[:WROTE_REVIEW]->()-[:REVIEWS]->()-[:IN_CATEGORY]->(:Category {category: 'Tables'})) AS TablesReviews,
+       size((c)-[:WROTE_REVIEW]->()) AS totalReviews,
+       size((c)-[:FRIEND_WITH]-()) AS friends;
+//-----------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+

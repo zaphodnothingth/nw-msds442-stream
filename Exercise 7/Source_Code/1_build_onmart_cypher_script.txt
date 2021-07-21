@@ -1,0 +1,77 @@
+// delete existing graph
+match (n) detach delete n;
+
+// verify you have no nodes/relationships in your graph
+match (n) return n;
+
+
+// Create the customer nodes
+
+LOAD CSV WITH HEADERS FROM 'file:///Sample_Orders_Log_1000_Transactions.csv' AS row
+MERGE (c:Customer {customerID: row.customerID, lastName: row.lastName, firstName: row.firstName})
+
+
+// UNWIND multiple values for FRIENDS of the customer
+// And build FRIEND_WITH relationship
+
+LOAD CSV WITH HEADERS FROM 'file:///Sample_Orders_Log_1000_Transactions.csv' AS row
+MATCH (c:Customer {customerID: row.customerID})
+
+WITH c, row
+UNWIND split(row.friends, ';') AS friend
+MATCH (f:Customer {customerID: friend})
+MERGE (c)-[:FRIEND_WITH]->(f)
+
+
+
+// Create the Review Nodes
+
+LOAD CSV WITH HEADERS FROM 'file:///Sample_Orders_Log_1000_Transactions.csv' AS row
+WITH row
+WHERE NOT row.reviewID IS NULL
+MERGE (r:Review {reviewID: row.reviewID, rating: row.rating})
+
+
+// Create the WROTE_REVIEW relationship
+
+LOAD CSV WITH HEADERS FROM 'file:///Sample_Orders_Log_1000_Transactions.csv' AS row
+WITH row
+WHERE NOT row.reviewID IS NULL
+MATCH (c:Customer {customerID: row.customerID})
+MATCH (r:Review {reviewID: row.reviewID})
+MERGE (c)-[:WROTE_REVIEW]->(r)
+
+
+
+// Create the Category nodes
+
+LOAD CSV WITH HEADERS FROM 'file:///Sample_Orders_Log_1000_Transactions.csv' AS row
+MERGE (cat:Category {category: row.category})
+
+
+
+// Create the Product nodes
+
+LOAD CSV WITH HEADERS FROM 'file:///Sample_Orders_Log_1000_Transactions.csv' AS row
+MERGE (p:Product {productID: row.productID, productName: row.productName})
+
+
+
+// Create the IN_CATEGORY relationship
+
+LOAD CSV WITH HEADERS FROM 'file:///Sample_Orders_Log_1000_Transactions.csv' AS row
+WITH row
+MATCH (p:Product {productID: row.productID})
+MATCH (cat:Category {category: row.category})
+MERGE (p)-[:IN_CATEGORY]->(cat)
+
+
+
+// Create the REVIEWS relationship
+
+LOAD CSV WITH HEADERS FROM 'file:///Sample_Orders_Log_1000_Transactions.csv' AS row
+WITH row
+WHERE NOT row.reviewID IS NULL
+MATCH (r:Review {reviewID: row.reviewID})
+MATCH (p:Product {productID: row.productID})
+MERGE (r)-[:REVIEWS]->(p)

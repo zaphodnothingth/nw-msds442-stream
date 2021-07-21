@@ -1,0 +1,114 @@
+//-----------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------dairyPagerank------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------
+
+//-------------------------------------------Generate tablesPageRank-------------------------------------------------
+CALL gds.pageRank.write({
+nodeQuery: 'MATCH (c:Customer)-[:WROTE_REVIEW]->()-[:REVIEWS]->(p), (p)-[:IN_CATEGORY]->(:Category {category: $category}) WITH c, count(*) AS reviews WHERE reviews >= $cutoff RETURN id(c) AS id',
+relationshipQuery: 'MATCH (c1:Customer)-[:WROTE_REVIEW]->()-[:REVIEWS]->(p), (p)-[:IN_CATEGORY]->(:Category {category: $category}) MATCH (c1)-[:FRIEND_WITH]->(c2) RETURN id(c1) as source, id(c2) AS target',
+writeProperty: "tablesPageRank",
+validateRelationships: false,
+parameters: {category: "Tables", cutoff: 1}
+})
+YIELD nodePropertiesWritten, createMillis, computeMillis, writeMillis, ranIterations
+RETURN nodePropertiesWritten, createMillis, computeMillis, writeMillis, ranIterations
+//-----------------------------------------------------------------------------------------------------------------------------
+
+// Compute percentiles
+MATCH (c:Customer)
+WHERE exists(c.tablesPageRank)
+return avg(c.tablesPageRank) as ave,
+apoc.math.round(percentileDisc(c.tablesPageRank, 0.5), 2) AS `50%`,
+apoc.math.round(percentileDisc(c.tablesPageRank, 0.75), 2) AS `75%`,
+apoc.math.round(percentileDisc(c.tablesPageRank, 0.90), 2) AS `90%`,
+apoc.math.round(percentileDisc(c.tablesPageRank, 0.95), 2) AS `95%`,
+apoc.math.round(percentileDisc(c.tablesPageRank, 0.99), 2) AS `99%`,
+apoc.math.round(percentileDisc(c.tablesPageRank, 1.0), 2) AS `100%`
+
+//------------------ Check and display for page rank greater than 0.74--------------------------------------
+MATCH (c:Customer)
+WHERE exists(c.tablesPageRank)
+MATCH (c:Customer)
+WHERE c.tablesPageRank > 0.16
+WITH c ORDER BY c.tablesPageRank DESC
+
+RETURN c.customerID AS customerID, c.lastName AS lastName,
+       c.tablesPageRank AS pageRank,
+       size((c)-[:WROTE_REVIEW]->()-[:REVIEWS]->()-[:IN_CATEGORY]->(:Category {category: 'Tables'})) AS TablesReviews,
+       size((c)-[:WROTE_REVIEW]->()) AS totalReviews,
+       size((c)-[:FRIEND_WITH]-()) AS friends;
+//-----------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+//-----------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------Betweenness--------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------
+
+//-------- Calculate betweenness and display percentile distribution of data  ----------------------------
+Match (c:Customer)
+Where exists((c)-[:WROTE_REVIEW]->())
+SET c:Reviewer;
+
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+CALL gds.betweenness.write({
+nodeProjection: "Reviewer",
+relationshipProjection: "FRIEND_WITH",
+writeProperty: "between"
+})
+YIELD nodePropertiesWritten
+RETURN nodePropertiesWritten;
+
+//////////////////////////////////////////////////////////
+Match (c:Customer)
+Where exists(c.between)
+Return count(c.between) AS ind, avg(c.between) AS ave,
+toFloat(percentileDisc(c.between,0.5)) AS P50,
+toFloat(percentileDisc(c.between,0.75)) AS P75,
+toFloat(percentileDisc(c.between,0.90)) AS P90,
+toFloat(percentileDisc(c.between,0.95)) AS P95,
+toFloat(percentileDisc(c.between,0.99)) AS P99,
+toFloat(percentileDisc(c.between,1)) AS P100
+
+
+
+//------------- Display all betweenness scores for relevant customers (Please run this separately )-------------------------------------
+MATCH (c:Customer)-[:WROTE_REVIEW]->()-[:REVIEWS]->(:Product {productName: "Laptop Table - Multipurpose"})
+Where exists(c.between)
+WITH collect (distinct c.lastName) as userName,
+     toInteger(c.between) as betweenness,
+     c.tablesPageRank as pagerank,
+     size((c)-[:WROTE_REVIEW]->()-[:REVIEWS]->()-[:IN_CATEGORY]->(:Category {category: 'Tables'})) AS TablesReviews
+Return userName,
+betweenness, pagerank, TablesReviews order by betweenness desc
+//-----------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+//-------- Cross-promot Tables product Laptop Table - Multipurpose with Produce
+
+MATCH (c:Customer)-[:WROTE_REVIEW]->()-[:REVIEWS]->(:Product {productName: "Laptop Table - Multipurpose"})
+WHERE c.between > 2.0
+WITH c ORDER BY c.between DESC LIMIT 50
+
+MATCH (c:Customer)-[:WROTE_REVIEW]->(review)-[:REVIEWS]->( product )
+WHERE ( product )-[:IN_CATEGORY]->(:Category {category: "Bookcases"})
+
+WITH c, product , avg( toInteger(review.rating)) AS averageReviewRating, count(*) AS numberOfReviews
+WHERE numberOfReviews >= 1
+
+
+RETURN  c.lastName AS Customer, product.productName AS Product, averageReviewRating, numberOfReviews
+ORDER BY averageReviewRating DESC, numberOfReviews DESC
+LIMIT 10;
+
