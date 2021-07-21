@@ -1,0 +1,98 @@
+﻿Zip,City,State,Latitude,Longitude,Facility_ID
+60644,Chicago,IL,41.881331,-87.75671,DistributionCenter_1
+60626,Chicago,IL,42.009731,-87.66938,DistributionCenter_10
+60670,Chicago,IL,41.811929,-87.68732,DistributionCenter_11
+10259,New York,NY,40.780751,-73.977182,DistributionCenter_12
+10017,New York,NY,40.752159,-73.97231,DistributionCenter_13
+10250,New York,NY,40.709387,-74.016529,DistributionCenter_14
+10203,New York,NY,40.780751,-73.977182,DistributionCenter_15
+10014,New York,NY,40.734718,-74.00532,DistributionCenter_16
+10125,New York,NY,40.780751,-73.977182,DistributionCenter_17
+10004,New York,NJ,40.699226,-74.04118,DistributionCenter_18
+10257,New York,NY,40.780751,-73.977182,DistributionCenter_19
+60647,Chicago,IL,41.921126,-87.70085,DistributionCenter_2
+10033,New York,NY,40.848764,-73.93496,DistributionCenter_20
+10286,New York,NY,40.714231,-74.011895,DistributionCenter_21
+10032,New York,NY,40.840686,-73.94154,DistributionCenter_22
+11286,New York,NY,40.658825,-74.004495,DistributionCenter_23
+10043,New York,NY,40.780751,-73.977182,DistributionCenter_24
+10124,New York,NY,40.780751,-73.977182,DistributionCenter_25
+10277,New York,NY,40.780751,-73.977182,DistributionCenter_26
+10155,New York,NY,40.761104,-73.968036,DistributionCenter_27
+02121,Boston,MA,42.307448,-71.08127,DistributionCenter_28
+02118,Boston,MA,42.338724,-71.07276,DistributionCenter_29
+60657,Chicago,IL,41.940832,-87.65852,DistributionCenter_3
+02128,Boston,MA,42.378297,-71.0255,DistributionCenter_30
+02114,Boston,MA,42.361792,-71.06774,DistributionCenter_31
+02283,Boston,MA,42.338947,-70.919635,DistributionCenter_32
+02111,Boston,MA,42.349838,-71.06101,DistributionCenter_33
+90013,Los Angeles,CA,34.044662,-118.24255,DistributionCenter_34
+90101,Los Angeles,CA,33.786594,-118.298662,DistributionCenter_35
+90078,Los Angeles,CA,33.786594,-118.298662,DistributionCenter_36
+90774,Los Angeles,CA,33.783038,-118.238683,DistributionCenter_37
+90035,Los Angeles,CA,34.05266,-118.38531,DistributionCenter_38
+90096,Los Angeles,CA,33.786594,-118.298662,DistributionCenter_39
+60685,Chicago,IL,41.811929,-87.68732,DistributionCenter_4
+90081,Los Angeles,CA,33.786594,-118.298662,DistributionCenter_40
+90049,Los Angeles,CA,34.067409,-118.47528,DistributionCenter_41
+90025,Los Angeles,CA,34.045006,-118.44527,DistributionCenter_42
+90045,Los Angeles,CA,33.960041,-118.3949,DistributionCenter_43
+90015,Los Angeles,CA,34.038993,-118.26516,DistributionCenter_44
+90039,Los Angeles,CA,34.110425,-118.25832,DistributionCenter_45
+90066,Los Angeles,CA,34.002011,-118.43083,DistributionCenter_46
+33183,Miami,FL,25.699968,-80.40811,DistributionCenter_47
+33257,Miami,FL,25.558428,-80.458168,DistributionCenter_48
+33174,Miami,FL,25.763044,-80.35919,DistributionCenter_49
+60631,Chicago,IL,41.99623,-87.81091,DistributionCenter_5
+33192,Miami,FL,25.558428,-80.458168,DistributionCenter_50
+33111,Miami,FL,25.558428,-80.458168,DistributionCenter_51
+33188,Miami,FL,25.558428,-80.458168,DistributionCenter_52
+33133,Miami,FL,25.730678,-80.2441,DistributionCenter_53
+33166,Miami,FL,25.824725,-80.30476,DistributionCenter_54
+33138,Miami,FL,25.853184,-80.18622,DistributionCenter_55
+33194,Miami,FL,25.745549,-80.4651,DistributionCenter_56
+33135,Miami,FL,25.766577,-80.23576,DistributionCenter_57
+33157,Miami,FL,25.606583,-80.34859,DistributionCenter_58
+33154,Miami,FL,25.881391,-80.1276,DistributionCenter_59
+60640,Chicago,IL,41.973181,-87.6665,DistributionCenter_6
+33180,Miami,FL,25.962069,-80.14465,DistributionCenter_60
+33134,Miami,FL,25.753927,-80.27034,DistributionCenter_61
+33159,Miami,FL,25.558428,-80.458168,DistributionCenter_62
+75392,Dallas,TX,32.767268,-96.777626,DistributionCenter_63
+75270,Dallas,TX,32.78133,-96.80198,DistributionCenter_64
+75231,Dallas,TX,32.874317,-96.74764,DistributionCenter_65
+75363,Dallas,TX,32.767268,-96.777626,DistributionCenter_66
+75238,Dallas,TX,32.873926,-96.70922,DistributionCenter_67
+75223,Dallas,TX,32.792879,-96.74918,DistributionCenter_68
+75376,Dallas,TX,32.767268,-96.777626,DistributionCenter_69
+60669,Chicago,IL,41.811929,-87.68732,DistributionCenter_7
+75245,Dallas,TX,32.922499,-96.535191,DistributionCenter_70
+75254,Dallas,TX,32.946069,-96.794496,DistributionCenter_71
+75262,Dallas,TX,32.767268,-96.777626,DistributionCenter_72
+75229,Dallas,TX,32.895376,-96.85985,DistributionCenter_73
+75342,Dallas,TX,32.767268,-96.777626,DistributionCenter_74
+75267,Dallas,TX,32.767268,-96.777626,DistributionCenter_75
+75370,Dallas,TX,32.767268,-96.777626,DistributionCenter_76
+75277,Dallas,TX,32.767268,-96.777626,DistributionCenter_77
+75224,Dallas,TX,32.716065,-96.83987,DistributionCenter_78
+75211,Dallas,TX,32.736931,-96.88253,DistributionCenter_79
+60671,Chicago,IL,41.811929,-87.68732,DistributionCenter_8
+75203,Dallas,TX,32.745831,-96.80672,DistributionCenter_80
+37229,Nashville,TN,36.186605,-86.785248,DistributionCenter_81
+37201,Nashville,TN,36.164556,-86.77738,DistributionCenter_82
+37221,Nashville,TN,36.065032,-86.94674,DistributionCenter_83
+37246,Nashville,TN,36.158606,-86.789998,DistributionCenter_84
+37213,Nashville,TN,36.167179,-86.76777,DistributionCenter_85
+37237,Nashville,TN,36.186605,-86.785248,DistributionCenter_86
+37214,Nashville,TN,36.166956,-86.66869,DistributionCenter_87
+30370,Atlanta,GA,33.844371,-84.47405,DistributionCenter_88
+30881,Atlanta,GA,33.793006,-84.504081,DistributionCenter_89
+60638,Chicago,IL,41.787982,-87.7738,DistributionCenter_9
+30390,Atlanta,GA,33.844371,-84.47405,DistributionCenter_90
+30338,Atlanta,GA,33.942751,-84.31769,DistributionCenter_91
+30367,Atlanta,GA,33.789255,-84.387276,DistributionCenter_92
+30311,Atlanta,GA,33.724907,-84.47131,DistributionCenter_93
+30326,Atlanta,GA,33.849853,-84.3606,DistributionCenter_94
+30319,Atlanta,GA,33.872053,-84.33611,DistributionCenter_95
+30345,Atlanta,GA,33.851736,-84.28412,DistributionCenter_96
+30305,Atlanta,GA,33.830054,-84.38472,DistributionCenter_97

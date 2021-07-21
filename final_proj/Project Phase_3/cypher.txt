@@ -1,0 +1,20 @@
+# 9
+MATCH (Warehouse_1:Warehouse {facility_id: "Warehouse_1"})   
+MATCH (w:Warehouse)  
+WITH w.facility_id as Warehouse_id,   
+    distance(Point({latitude:Warehouse_1.latitude, longitude:Warehouse_1.longitude}), Point({latitude:w.latitude, longitude:w.longitude})) * 0.000621371 as distance    
+WHERE distance > 0 AND distance < 10  
+RETURN Warehouse_id     
+
+
+# 10
+MATCH (DistributionCenter_2:Distribution_Center {facility_id: "DistributionCenter_2"}) 
+MATCH (d:Distribution_Center)
+with 
+    d.facility_id as Distro_id, 
+    distance(Point({latitude:DistributionCenter_2.latitude, longitude:DistributionCenter_2.longitude}), Point({latitude:d.latitude,
+        longitude:d.longitude})) * 0.000621371 
+        as distance
+WHERE distance > 0 AND distance < 10
+RETURN Distro_id, distance
+ORDER BY distance limit 1
