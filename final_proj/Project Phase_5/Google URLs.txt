@@ -1,0 +1,10 @@
+For using GPU in your experiment, you could use Google colab
+
+https://colab.research.google.com/notebooks/basic_features_overview.ipynb#scrollTo=KR921S_OQSHG
+
+
+
+Tensorboard Projector:
+
+https://colab.research.google.com/github/tensorflow/tensorboard/blob/master/docs/tensorboard_projector_plugin.ipynb#scrollTo=v4s3Sf2I3mJr
+http://projector.tensorflow.org/
